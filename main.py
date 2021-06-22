@@ -47,4 +47,4 @@ while True:
 		driver.switch_to.default_content()
 		time.sleep(0.2)
 
-time.sleep(120)
+time.sleep(60)
