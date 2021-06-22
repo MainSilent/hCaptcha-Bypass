@@ -17,6 +17,7 @@ def request_interceptor(request):
 		request.body = bytes("&".join(modify), 'utf-8')
 		del request.headers['Content-Length']
 		request.headers['Content-Length'] = str(len(request.body))
+		request.headers['Cookie'] = "hc_accessibility=4tU0ZNSIjbdY8m5mgY+bE90Wq5XwAcBoWew3/h7A3bq2zDl3jkQcaSx/F0bji1ph6x3Ct1VVtJJX66CPpD+enEpFknXYmyfwXF9+HLnxYwKRQy4bqssblcWzE9xIoDzikoC0tu5Vfie3dKpVgCzI1tsepz8Ps0yU3+hjho66GTE79nSo09qqSEJtvbxKfiyud0hSxfg+8ADuOGcHDr269GVBT2w6rbSIRlYFNEm1kwySOtt8TBC926EcDOsMyM6pDLoBdtmF7xQudqFmxPMOfaPZPPVrIO9yKOcTV5fJ2p2brhUtUIEbaqY7YEyBu/E7Pb07Ou+fuPqxDt5yPWXtBaVWlyJitMQ4DUcwTdgfdCvVpmZXeuRfb65jMgIdWw9vFCti8TtbfXauGtaOdjevCYyXAfImEfBOwKtdKEno752vyNG0+5HBfEXUVJUE+eywCxKSvMmL7o2QCyuKs6B2GaslJIiKByVSXiBcm1e5YwaC+74RGzLwls+fYfoEuvBfAs1dXFDoNq5Q+BFQ"
 
 def response_interceptor(request, response):
 	if "https://hcaptcha.com/getcaptcha" in request.url:
