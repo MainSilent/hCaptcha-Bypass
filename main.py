@@ -16,8 +16,8 @@ def get_token():
 		cookies = json.load(f)
 	for cookie in cookies:
 		if cookie["name"] == "hc_accessibility":
-			if int(cookie["expiry"]) > time.time():
-				raise Exception("Cookie has expired") 
+			if int(cookie["expiry"]) < time.time():
+				print("Cookie has expired") 
 			return cookie["value"]
 
 def request_interceptor(request):
