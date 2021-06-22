@@ -24,14 +24,14 @@ def request_interceptor(request):
 
 def response_interceptor(request, response):
 	if "https://hcaptcha.com/getcaptcha" in request.url:
+		body = gzip.decompress(response.body).decode('utf-8')
+		data = json.loads(body)
 		try:
-			body = gzip.decompress(response.body).decode('utf-8')
-			data = json.loads(body)
-			print(data['generated_pass_UUID'])
-			driver.close()
+			if data["bypass-message"]:
+				print("Failed")
 		except:
-			...
-			#print(e)
+			print(data['generated_pass_UUID'])
+		driver.close()
 
 driver.request_interceptor = request_interceptor
 driver.response_interceptor = response_interceptor
