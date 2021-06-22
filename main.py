@@ -47,14 +47,4 @@ while True:
 		driver.switch_to.default_content()
 		time.sleep(0.2)
 
-driver.switch_to.default_content()
-driver.switch_to.frame(1)
-while True:
-	try:
-		if driver.find_element_by_xpath("/html/body").get_attribute('aria-hidden'):
-			print("Failed")
-			driver.close()
-	except:
-		time.sleep(0.2)
-
 time.sleep(120)
