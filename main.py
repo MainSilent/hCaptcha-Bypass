@@ -20,7 +20,7 @@ def request_interceptor(request):
 		request.body = bytes("&".join(modify), 'utf-8')
 		del request.headers['Content-Length']
 		request.headers['Content-Length'] = str(len(request.body))
-		request.headers['Cookie'] = "hc_accessibility=4tU0ZNSIjbdY8m5mgY+bE90Wq5XwAcBoWew3/h7A3bq2zDl3jkQcaSx/F0bji1ph6x3Ct1VVtJJX66CPpD+enEpFknXYmyfwXF9+HLnxYwKRQy4bqssblcWzE9xIoDzikoC0tu5Vfie3dKpVgCzI1tsepz8Ps0yU3+hjho66GTE79nSo09qqSEJtvbxKfiyud0hSxfg+8ADuOGcHDr269GVBT2w6rbSIRlYFNEm1kwySOtt8TBC926EcDOsMyM6pDLoBdtmF7xQudqFmxPMOfaPZPPVrIO9yKOcTV5fJ2p2brhUtUIEbaqY7YEyBu/E7Pb07Ou+fuPqxDt5yPWXtBaVWlyJitMQ4DUcwTdgfdCvVpmZXeuRfb65jMgIdWw9vFCti8TtbfXauGtaOdjevCYyXAfImEfBOwKtdKEno752vyNG0+5HBfEXUVJUE+eywCxKSvMmL7o2QCyuKs6B2GaslJIiKByVSXiBcm1e5YwaC+74RGzLwls+fYfoEuvBfAs1dXFDoNq5Q+BFQ"
+		request.headers['Cookie'] = "hc_accessibility=6DbBcYzJctOhoJkeXwAfR2y1qDU6NGV/I00UnfexnHQ2M53KVqq91ftjh1pD2U2HkXHcLcjdR1Mv6qYSgLnAXq3cD4ciLqYGeb2/vzf0pYB8duUXdIBKwbqbMPCP+E4haX0Nk8BGiByBjOke3YDgS3inacc+s1kqrPb7BOpNf5X3DyUEwF7r2c0MTcAjvbFAJwQ+9rGPDFsmZ0ah3Hi4qeCjAaeFjfyZ79xXe83RHQ1AI79MpPfHMNhA/DXXobvNz6fFOekIoXaCUIvz3VpDeKuR/BfqVvb4j9XNYT0tMhTnWyCB5pdAz9LtPptw3Et9bGWLGWdpgq8+IizovIBum98XA1e5wqbsM2z3A+yq1XhEwp6qglJvimn4U2W2HZHy07OcbSGSmFi5cKsJKRqVyFS+KeVzrhmvZj86YRSotfN1jLD/7Zh9namqLSH8FfWJUFdIxg7LJMZ18IHyhta2Ynsxctg31HQ+psJmZZn+6U8B8kVEPnLEVdjyXWydunSE16Fps4+14vKFes1H"
 
 def response_interceptor(request, response):
 	if "https://hcaptcha.com/getcaptcha" in request.url:
