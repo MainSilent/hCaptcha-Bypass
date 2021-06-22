@@ -1,3 +1,4 @@
+import os
 import time
 from seleniumwire.undetected_chromedriver import Chrome
 
@@ -13,5 +14,5 @@ def interceptor(request):
 
 driver = Chrome(executable_path="./chromedriver")
 driver.request_interceptor = interceptor
-driver.get('file:///home/silent/Documents/Projects/ReCaptcha-Bypass/hcaptcha.html')
+driver.get(f'file://{os.getcwd()}/hcaptcha.html')
 time.sleep(120)
