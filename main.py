@@ -7,9 +7,9 @@ from seleniumwire.undetected_chromedriver import Chrome
 
 # Note: You should also change the site key in html file
 host = "discord.com"
-chrome_options = Options()
-chrome_options.add_argument("--headless")
-driver = Chrome(executable_path="./chromedriver",options=chrome_options)
+options = Options()
+options.add_argument("--headless")
+driver = Chrome(executable_path="./chromedriver", options=options)
 
 def request_interceptor(request):
 	if "https://hcaptcha.com/checksiteconfig" in request.url:
