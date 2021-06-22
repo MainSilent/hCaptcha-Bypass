@@ -7,6 +7,7 @@ from seleniumwire.undetected_chromedriver import Chrome
 
 # Note: You should also change the site key in html file
 host = "discord.com"
+token = "6DbBcYzJctOhoJkeXwAfR2y1qDU6NGV/I00UnfexnHQ2M53KVqq91ftjh1pD2U2HkXHcLcjdR1Mv6qYSgLnAXq3cD4ciLqYGeb2/vzf0pYB8duUXdIBKwbqbMPCP+E4haX0Nk8BGiByBjOke3YDgS3inacc+s1kqrPb7BOpNf5X3DyUEwF7r2c0MTcAjvbFAJwQ+9rGPDFsmZ0ah3Hi4qeCjAaeFjfyZ79xXe83RHQ1AI79MpPfHMNhA/DXXobvNz6fFOekIoXaCUIvz3VpDeKuR/BfqVvb4j9XNYT0tMhTnWyCB5pdAz9LtPptw3Et9bGWLGWdpgq8+IizovIBum98XA1e5wqbsM2z3A+yq1XhEwp6qglJvimn4U2W2HZHy07OcbSGSmFi5cKsJKRqVyFS+KeVzrhmvZj86YRSotfN1jLD/7Zh9namqLSH8FfWJUFdIxg7LJMZ18IHyhta2Ynsxctg31HQ+psJmZZn+6U8B8kVEPnLEVdjyXWydunSE16Fps4+14vKFes1H"
 options = Options()
 options.add_argument("--headless")
 driver = Chrome(executable_path="./chromedriver", options=options)
@@ -20,7 +21,7 @@ def request_interceptor(request):
 		request.body = bytes("&".join(modify), 'utf-8')
 		del request.headers['Content-Length']
 		request.headers['Content-Length'] = str(len(request.body))
-		request.headers['Cookie'] = "hc_accessibility=6DbBcYzJctOhoJkeXwAfR2y1qDU6NGV/I00UnfexnHQ2M53KVqq91ftjh1pD2U2HkXHcLcjdR1Mv6qYSgLnAXq3cD4ciLqYGeb2/vzf0pYB8duUXdIBKwbqbMPCP+E4haX0Nk8BGiByBjOke3YDgS3inacc+s1kqrPb7BOpNf5X3DyUEwF7r2c0MTcAjvbFAJwQ+9rGPDFsmZ0ah3Hi4qeCjAaeFjfyZ79xXe83RHQ1AI79MpPfHMNhA/DXXobvNz6fFOekIoXaCUIvz3VpDeKuR/BfqVvb4j9XNYT0tMhTnWyCB5pdAz9LtPptw3Et9bGWLGWdpgq8+IizovIBum98XA1e5wqbsM2z3A+yq1XhEwp6qglJvimn4U2W2HZHy07OcbSGSmFi5cKsJKRqVyFS+KeVzrhmvZj86YRSotfN1jLD/7Zh9namqLSH8FfWJUFdIxg7LJMZ18IHyhta2Ynsxctg31HQ+psJmZZn+6U8B8kVEPnLEVdjyXWydunSE16Fps4+14vKFes1H"
+		request.headers['Cookie'] = f"hc_accessibility={token}"
 
 def response_interceptor(request, response):
 	if "https://hcaptcha.com/getcaptcha" in request.url:
