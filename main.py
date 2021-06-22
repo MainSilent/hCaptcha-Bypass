@@ -19,15 +19,22 @@ def request_interceptor(request):
 
 def response_interceptor(request, response):
 	if "https://hcaptcha.com/getcaptcha" in request.url:
-		body = gzip.decompress(response.body).decode('utf-8')
-		data = json.loads(body)
-		print(data['generated_pass_UUID'])
+		try:
+			body = gzip.decompress(response.body).decode('utf-8')
+			data = json.loads(body)
+			print(data['generated_pass_UUID'])
+		except:
+			...
 
 driver = Chrome(executable_path="./chromedriver")
 driver.request_interceptor = request_interceptor
 driver.response_interceptor = response_interceptor
-
-
-
 driver.get(f'file://{os.getcwd()}/hcaptcha.html')
-time.sleep(120)
+
+driver.switch_to.frame(0)
+while True:
+	try:
+		driver.find_element_by_id("checkbox").send_keys(Keys.ENTER)
+	except:
+		...
+	time.sleep(0.2)
