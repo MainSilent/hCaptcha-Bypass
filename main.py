@@ -2,7 +2,7 @@ import os
 import time
 from seleniumwire.undetected_chromedriver import Chrome
 
-def interceptor(request):
+def request_interceptor(request):
 	if "https://hcaptcha.com/checksiteconfig" in request.url:
 		request.url = "https://hcaptcha.com/checksiteconfig?host=discord.com&sitekey=f5561ba9-8f1e-40ca-9b5b-a0b3f719ef34&sc=1&swa=1"
 	elif "https://hcaptcha.com/getcaptcha" in request.url:
@@ -12,7 +12,11 @@ def interceptor(request):
 		del request.headers['Content-Length']
 		request.headers['Content-Length'] = str(len(request.body))
 
+def response_interceptor(request, response):
+	print(request)
+
 driver = Chrome(executable_path="./chromedriver")
-driver.request_interceptor = interceptor
+driver.request_interceptor = request_interceptor
+driver.response_interceptor = response_interceptor
 driver.get(f'file://{os.getcwd()}/hcaptcha.html')
 time.sleep(120)
