@@ -25,6 +25,7 @@ def response_interceptor(request, response):
 			print(data['generated_pass_UUID'])
 		except:
 			...
+			#print(e)
 
 driver = Chrome(executable_path="./chromedriver")
 driver.request_interceptor = request_interceptor
@@ -33,9 +34,12 @@ driver.get(f'file://{os.getcwd()}/hcaptcha.html')
 
 while True:
 	try:
-		driver.execute_script("document.write('sdf')")
-	except:
-		...
-	time.sleep(0.2)
+		driver.switch_to.frame(0)
+		driver.find_element_by_id("checkbox").click()
+		break
+	except Exception as e:
+		#print(e)
+		driver.switch_to.default_content()
+		time.sleep(0.2)
 
 time.sleep(120)
