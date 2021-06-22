@@ -6,6 +6,7 @@ from seleniumwire.undetected_chromedriver import Chrome
 
 # Note: You should also change the site key in html file
 host = "discord.com"
+driver = Chrome(executable_path="./chromedriver")
 
 def request_interceptor(request):
 	if "https://hcaptcha.com/checksiteconfig" in request.url:
@@ -23,11 +24,11 @@ def response_interceptor(request, response):
 			body = gzip.decompress(response.body).decode('utf-8')
 			data = json.loads(body)
 			print(data['generated_pass_UUID'])
+			driver.close()
 		except:
 			...
 			#print(e)
 
-driver = Chrome(executable_path="./chromedriver")
 driver.request_interceptor = request_interceptor
 driver.response_interceptor = response_interceptor
 driver.get(f'file://{os.getcwd()}/hcaptcha.html')
