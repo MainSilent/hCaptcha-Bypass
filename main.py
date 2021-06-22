@@ -12,7 +12,13 @@ options.add_argument("--headless")
 driver = Chrome(executable_path="./chromedriver", options=options)
 
 def get_token():
-	...
+	with open("h_captcha.json", "r") as f:
+		cookies = json.load(f)
+	for cookie in cookies:
+		if cookie["name"] == "hc_accessibility":
+			if int(cookie["expiry"]) > time.time():
+				raise Exception("Cookie has expired") 
+			return cookie["value"]
 
 def request_interceptor(request):
 	if "https://hcaptcha.com/checksiteconfig" in request.url:
