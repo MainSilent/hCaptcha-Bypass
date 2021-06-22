@@ -9,7 +9,7 @@ from dotenv import load_dotenv; load_dotenv()
 
 def get_cookie():
 	print("Waiting for hcaptcha cookie...")
-	driver = webdriver.Chrome(executable_path="chromedriver")
+	driver = webdriver.Chrome()
 	driver.get("https://accounts.hcaptcha.com/verify_email/"+os.getenv("hcaptcha"))
 	while True:
 		if "Set Cookie" in driver.find_element_by_xpath("/html/body").text:
