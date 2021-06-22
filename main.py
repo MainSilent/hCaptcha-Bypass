@@ -31,10 +31,11 @@ driver.request_interceptor = request_interceptor
 driver.response_interceptor = response_interceptor
 driver.get(f'file://{os.getcwd()}/hcaptcha.html')
 
-driver.switch_to.frame(0)
 while True:
 	try:
-		driver.find_element_by_id("checkbox").send_keys(Keys.ENTER)
+		driver.execute_script("document.write('sdf')")
 	except:
 		...
 	time.sleep(0.2)
+
+time.sleep(120)
