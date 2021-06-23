@@ -2,7 +2,6 @@ import os
 import time
 import json
 import gzip
-import subprocess
 from selenium.webdriver.chrome.options import Options
 from seleniumwire.undetected_chromedriver import Chrome
 
