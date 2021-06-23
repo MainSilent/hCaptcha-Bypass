@@ -2,14 +2,14 @@ import os
 import time
 import json
 import gzip
+import subprocess
 from selenium.webdriver.chrome.options import Options
 from seleniumwire.undetected_chromedriver import Chrome
 
 # Note: You should also change the site key in html file
 host = "discord.com"
-options = Options()
-options.add_argument("--headless")
-driver = Chrome(executable_path="./chromedriver", options=options)
+driver = None
+key = ""
 
 def get_token():
 	with open("h_captcha.json", "r") as f:
@@ -33,27 +33,43 @@ def request_interceptor(request):
 
 def response_interceptor(request, response):
 	if "https://hcaptcha.com/getcaptcha" in request.url:
+		global key
 		body = gzip.decompress(response.body).decode('utf-8')
 		data = json.loads(body)
 		try:
 			if data["bypass-message"]:
-				print("Failed")
+				key = False
 		except:
-			print(data['generated_pass_UUID'])
+			key = data['generated_pass_UUID']
 		driver.close()
 
-driver.request_interceptor = request_interceptor
-driver.response_interceptor = response_interceptor
-driver.get(f'file://{os.getcwd()}/hcaptcha.html')
+def new():
+	global driver
+	options = Options()
+	options.add_argument("--headless")
+	driver = Chrome(executable_path="./chromedriver", options=options)
+	driver.request_interceptor = request_interceptor
+	driver.response_interceptor = response_interceptor
+	print("Openning page...")
+	driver.get(f'file://{os.getcwd()}/hcaptcha.html')
 
-while True:
-	try:
-		driver.switch_to.frame(0)
-		driver.find_element_by_id("checkbox").click()
-		break
-	except Exception as e:
-		#print(e)
-		driver.switch_to.default_content()
+	print("Waiting for checkbox...")
+	while True:
+		try:
+			driver.switch_to.frame(0)
+			driver.find_element_by_id("checkbox").click()
+			print("Checkbox clicked")
+			break
+		except Exception as e:
+			#print(e)
+			driver.switch_to.default_content()
+			time.sleep(0.2)
+
+	print("Waiting for key...")
+	while True:
+		if key != "":
+			return key
 		time.sleep(0.2)
 
-time.sleep(60)
+if __name__ == "__main__":
+	print(new())
