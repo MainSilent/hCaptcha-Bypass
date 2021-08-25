@@ -5,7 +5,7 @@ Bypass for hCaptcha with Token key
 
 2- Then run captcha_token.py to get accessibility cookie
 
-3- When getting the coockie make sure you copy the link and open it in second tab
+3- When getting the cookie make sure you copy the link and open it in second tab
 
 4- Now you can run main.py to get captcha key
 
