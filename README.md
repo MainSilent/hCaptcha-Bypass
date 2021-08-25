@@ -8,3 +8,5 @@ Bypass for hCaptcha with Token key
 3- When getting the coockie make sure you copy the link and open it in second tab
 
 4- Now you can run main.py to get captcha key
+
+Note: You need to refresh the cookie every 24 hours
