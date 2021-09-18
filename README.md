@@ -10,3 +10,6 @@ Bypass for hCaptcha with Token key
 4- Now you can run main.py to get captcha key
 
 Note: You need to refresh the cookie every 24 hours
+
+You can also checkout my discord ScreenShare bot
+https://github.com/MainSilent/Discord-Screenshare
