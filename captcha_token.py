@@ -22,7 +22,7 @@ def get_cookie():
 		try:
 			# for now i need to open the link in another tab and set the coockie manual
 			driver.switch_to.window(driver.window_handles[1])
-			res = driver.find_element_by_xpath('//*[@id="root"]/div/div[3]/div/div[3]/span').text
+			res = driver.find_element_by_xpath('//*[@id="root"]/div[2]/div/div/div[3]/span').text
 			if "Cookie set" in res:
 				with open("h_captcha.json", "w") as f:
 				    f.write(json.dumps(driver.get_cookies()))
