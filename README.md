@@ -1,4 +1,7 @@
 # hCaptcha-Bypass
+
+🔴 This script is mostly deprecated but still works if you have `hc_accessbility` token, I'm currently working on other methods of bypassing.
+
 Bypass for hCaptcha with Token key
 
 1- Get captcha key from Hcaptcha accessibility copy the button link and past only the code at the end of url in .env
